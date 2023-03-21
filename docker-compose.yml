@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: docker-dashboard
+    ports:
+      - "3001:3000"
+    environment:
+      - SERVER_ADDRESS=http://server:8888
+  server:
+    image: docker-server
+    privileged: true
+    ports:
+      - "8081:8888"
