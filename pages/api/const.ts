@@ -1,1 +1,2 @@
-export const ServerAddress = process.env.SERVER_ADDRESS || 'http://localhost:8080'
+const Docker = require('dockerode');
+export const dockerClient = new Docker();

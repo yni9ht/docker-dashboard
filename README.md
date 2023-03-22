@@ -2,16 +2,10 @@
 
 First, run the development server:
 
-### Run server
+### Development
 
 ```bash
-cd docker-server
+npm install
 
-go run main.go
-```
-
-### Run UI
-
-```bash
 npm run dev
 ```

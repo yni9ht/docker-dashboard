@@ -1,19 +1,15 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {ServerAddress} from "@/pages/api/const";
+import {dockerClient} from "@/pages/api/const";
 
 function deleteContainer(req: NextApiRequest, res: NextApiResponse) {
     const {id} = req.query
-    fetch(`${ServerAddress}/container/${id}`, {
-        method: 'DELETE'
-    }).then(response => {
-        if (response.status !== 204) {
-            res.status(500)
-        } else {
-            res.status(204)
-        }
-        res.end()
-    }).catch(err => {
-        res.status(500).json(err)
+    const options = {
+        force: true,
+    }
+    dockerClient.getContainer(id).remove(options).then(() => {
+        res.status(204).end()
+    }).catch((e: any) => {
+        res.status(500).json(e)
     })
 }
 
